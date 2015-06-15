@@ -1,0 +1,24 @@
+{
+  "name": "hapi-marko",
+  "version": "0.1.0",
+  "description": "A raptorjs/marko wrapper for Hapi",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -I __RAPTOR_LOGGING"
+  },
+  "author": "James Sumners",
+  "license": "MIT",
+  "peerDependencies": {
+    "marko": "^2.7.1"
+  },
+  "dependencies": {
+    "boom": "^2.8.0",
+    "hoek": "^2.14.0",
+    "joi": "^6.4.3"
+  },
+  "devDependencies": {
+    "code": "^1.4.0",
+    "hapi": "^8.6.1",
+    "lab": "^5.10.0"
+  }
+}
