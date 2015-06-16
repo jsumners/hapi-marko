@@ -1,6 +1,6 @@
 {
   "name": "hapi-marko",
-  "version": "0.1.1",
+  "version": "0.2.0-PRE",
   "description": "A raptorjs/marko wrapper for Hapi",
   "homepage": "http://github.com/jsumners/hapi-marko",
   "keywords": ["hapi", "marko", "template", "html"],
