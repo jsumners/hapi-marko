@@ -1,13 +1,8 @@
 # Hapi Marko
 
 This module adds support for the [Marko][marko] templating language to
-[Hapi][hapi].
-
-<span style="font-size: larger">**Warning:**</span> This module **replaces**
-the `reply.view` added by Hapi's native view manager, [Vision][vision]. As a
-result, you **should not** use this module if you want to use any view engine
-other than Marko. With the way Marko works, i.e. template resolution, this
-is a necessary tradeoff.
+[Hapi][hapi]. It adds a new method to the reply interface: `reply.marko`. This
+method is used to render a Marko template and send the result as the response.
 
 ## Install
 
@@ -33,18 +28,21 @@ const hapiMarko = require('hapi-marko');
 
 const server = new Hapi.Server({minimal: true});
 server.connection();
-server.register(hapiMarko, function(){});
-
-server.views({
-  defaultExtension: '.marko',
-  path: __dirname + '/templates'
-});
+server.register(
+  {
+    register: hapiMarko,
+    options: {
+      templatesDir: __dirname + '/templates'
+    }
+  },
+  function(){}
+);
 
 server.route({
   method: 'GET',
   path: '/{param}',
-  handler: {
-    view: 'index'
+  handler: function (req, reply) {
+    return reply('index', {params: req.params});
   }
 });
 
@@ -58,25 +56,22 @@ server.inject(
 
 ## Options
 
-The following options can be supplied as an options object to `server.views`:
+The following options can be supplied as an options object to the *hapi-mark*
+initialization function:
 
 * `compileMode` (string): `'sync'` is the only value currently supported and
   it is the default
 * `contentType` (string): the default is `text/html`
-* `context` (object): the default global context for all templates. The default
+* `context` (object): default global context for all templates. The default
   is `null`
 * `defaultExtension` (string): the extension for template files. The default
   is `.marko`
 * `encoding` (string): encoding to send to the client. The default is `utf8`
-* `path` (string) [required]: the location where template files are stored.
-  If `relativeTo` is not supplied, `path` should be an absolute location
-  to the directory containing the template files
-* `relativeTo` (string): if set, specifies an absolute file path to the
-  directory containing template files. When set, all references to `path` will
-  be relative to the value of `relativeTo`
+* `templatesDir` (string) [required]: the location where template files are
+stored. It should be an absolute location to the directory containing the
+template files
 
-Wherever these options are override-able on routes as outlined in the
-regular [Hapi][hapi] documentation, so are the options for *hapi-marko*.
+**Note:** you must supply at least an object with `templatesDir` set.
 
 ## History
 

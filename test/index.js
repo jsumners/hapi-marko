@@ -16,15 +16,22 @@ describe('handler()', function testHandler() {
   it('handles routes to views', function _th(done) {
     const server = new Hapi.Server({minimal: true});
     server.connection();
-    server.register(hapiMarko, Hoek.ignore);
-    server.views({
-      path: path.resolve(__dirname + '/templates')
-    });
+    server.register(
+      {
+        register: hapiMarko,
+        options: {
+          templatesDir: path.resolve(__dirname + '/templates')
+        }
+      },
+      Hoek.ignore
+    );
 
     server.route({
       method: 'GET',
       path: '/{param}',
-      handler: {view: 'hello'}
+      handler: function(req, reply) {
+        return reply.marko('hello', {params: req.params});
+      }
     });
     server.inject(
       {
@@ -38,18 +45,25 @@ describe('handler()', function testHandler() {
     );
   });
 
-  it('blows up with invalid template path', function _boom(done) {
+  it('blows up with invalid template templatesDir', function _boom(done) {
     const server =  new Hapi.Server({minimal: true});
     server.connection();
-    server.register(hapiMarko, Hoek.ignore);
-    server.views({
-      path: path.resolve(__dirname + '/nope')
-    });
+    server.register(
+      {
+        register: hapiMarko,
+        options: {
+          templatesDir: path.resolve(__dirname + '/nope/templates')
+        }
+      },
+      Hoek.ignore
+    );
 
     server.route({
       method: 'GET',
       path: '/{param}',
-      handler: {view: 'hello'}
+      handler: function(req, reply) {
+        return reply.marko('hello', {params: req.params});
+      }
     });
     server.inject(
       {
@@ -66,24 +80,54 @@ describe('handler()', function testHandler() {
   it('handles custom context', function _cc(done) {
     const server = new Hapi.Server({minimal: true});
     server.connection();
-    server.register(hapiMarko, Hoek.ignore);
-    server.views({
-      path: path.resolve(__dirname + '/templates')
-    });
+    server.register(
+      {
+        register: hapiMarko,
+        options: {
+          templatesDir: path.resolve(__dirname + '/templates')
+        }
+      },
+      Hoek.ignore
+    );
 
     server.route({
       method: 'GET',
       path: '/',
-      handler: {
-        view: {
-          template: 'valid/test',
-          context: { message: 'foobar' }
-        }
+      handler: function(req, reply) {
+        return reply.marko('valid/test', {message: 'foobar'});
       }
     });
 
     server.inject('/', function (res) {
       expect(res.result).to.equal('foobar');
+      done();
+    });
+  });
+
+  it('supports a global context', function _gc(done) {
+    const server = new Hapi.Server({minimal: true});
+    server.connection();
+    server.register(
+      {
+        register: hapiMarko,
+        options: {
+          context: {foo: 'bar'},
+          templatesDir: path.resolve(__dirname + '/templates')
+        }
+      },
+      Hoek.ignore
+    );
+
+    server.route({
+      method: 'GET',
+      path: '/',
+      handler: function(req, reply) {
+        return reply.marko('global', {message: 'foobar'});
+      }
+    });
+
+    server.inject('/', function (res) {
+      expect(res.result).to.equal('bar');
       done();
     });
   });
