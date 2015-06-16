@@ -1,6 +1,6 @@
 {
   "name": "hapi-marko",
-  "version": "0.1.0",
+  "version": "0.1.0-PRE",
   "description": "A raptorjs/marko wrapper for Hapi",
   "main": "index.js",
   "scripts": {
