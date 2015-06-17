@@ -3,14 +3,19 @@
   "version": "0.2.0-PRE",
   "description": "A raptorjs/marko wrapper for Hapi",
   "homepage": "http://github.com/jsumners/hapi-marko",
-  "keywords": ["hapi", "marko", "template", "html"],
+  "keywords": [
+    "hapi",
+    "marko",
+    "template",
+    "html"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "lab -I __RAPTOR_LOGGING"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "http://github.com/jsumners/hapi-marko.git"
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jsumners/hapi-marko.git"
   },
   "bugs": "http://github.com/jsumners/hapi-marko/issues",
   "author": "James Sumners <james.sumners@gmail.com>",
