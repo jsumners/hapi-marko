@@ -80,6 +80,9 @@ template files
 
 ## History
 
++ **0.2.0:**
+    + Adds hot reloading support for quicker template development
+
 + **0.1.0:**
     + Initial release. Bare bones implementation. Expect problems
     + Synchronous template rendering is the only rendering method supported
