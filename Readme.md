@@ -71,8 +71,8 @@ initialization function:
     * `enabled` (bool): enables Marko's hot reloading for quickly developing
     templates. This should not be used in production. Default: `false`
     * `delay` (number): how long *hapi-marko*'s file watcher waits when
-      hot reloading is enabled before it processes the change. This let's editors
-      do their thing before the reload occurs
+      hot reloading is enabled before it processes the change. This let's
+      editors do their thing before the reload occurs. Default: `2500`
     * `watchFiles` (array): an array of [glob][glob] patterns to match for the
       file watcher. Matched templates will be monitored for changes and reloaded
       accordingingly. This is useful when you use included templates.
