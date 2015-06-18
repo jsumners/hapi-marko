@@ -184,4 +184,55 @@ describe('engine', function _engineTests() {
 
     firstTest();
   });
+
+  lab.test('watches specified files', {timeout: 5500}, function _hrtest(done) {
+    const tdir = path.resolve(__dirname + '/templates');
+    const server = new Hapi.Server({minimal: true});
+    server.connection();
+    server.register(
+      {
+        register: hapiMarko,
+        options: {
+          hotReloading: {
+            enabled: true,
+            watchFiles: ['./templates/**/glob.marko']
+          },
+          templatesDir: tdir
+        }
+      },
+      Hoek.ignore
+    );
+
+    server.route({
+      method: 'GET',
+      path: '/',
+      handler: function(req, reply) {
+        return reply.marko('glob/glob', {foo:'bar'});
+      }
+    });
+
+    const testTmpl = path.join(tdir, 'glob/glob.marko');
+    const fs = require('fs');
+    fs.writeFileSync(testTmpl, '$data.foo');
+
+    const secondTest = function secondTest() {
+      server.inject('/', function(res) {
+        expect(res.result).to.equal('<p>bar</p>');
+        fs.unlinkSync(testTmpl + '.js');
+        done();
+      });
+    };
+
+    const firstTest = function firstTest() {
+      server.inject('/', function(res) {
+        expect(res.result).to.equal('bar');
+
+        fs.writeFile(testTmpl, '<p>$data.foo</p>', function() {
+          setTimeout(secondTest, 5000);
+        });
+      });
+    };
+
+    firstTest();
+  });
 });

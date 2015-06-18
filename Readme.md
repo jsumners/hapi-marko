@@ -73,6 +73,10 @@ initialization function:
     * `delay` (number): how long *hapi-marko*'s file watcher waits when
       hot reloading is enabled before it processes the change. This let's editors
       do their thing before the reload occurs
+    * `watchFiles` (array): an array of [glob][glob] patterns to match for the
+      file watcher. Matched templates will be monitored for changes and reloaded
+      accordingingly. This is useful when you use included templates.
+      Normally, only the parent template will be monitored. Default: `[]`
 * `templatesDir` (string) [required]: the location where template files are
 stored. It should be an absolute location to the directory containing the
 template files
