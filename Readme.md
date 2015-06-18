@@ -85,6 +85,9 @@ template files
 
 ## History
 
++ **0.3.1:**
+    + Fix incorrect definition of hot reloading maps
+
 + **0.3.0:**
     + Adjusts `hotReloading` option to an object of other options
     + Adds support for specifying a list of templates to monitor
