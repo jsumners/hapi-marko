@@ -67,11 +67,16 @@ initialization function:
 * `defaultExtension` (string): the extension for template files. The default
   is `.marko`
 * `encoding` (string): encoding to send to the client. The default is `utf8`
-* `hotReloading` (bool): enables Marko's hot reloading for quickly developing
-  templates. This should not be used in production
-* `reloadDelay` (number): how long *hapi-marko*'s file watcher waits when
-  hot reloading is enabled before it processes the change. This let's editors
-  do their thing before the reload occurs
+* `hotReloading` (object):
+    * `enabled` (bool): enables Marko's hot reloading for quickly developing
+    templates. This should not be used in production. Default: `false`
+    * `delay` (number): how long *hapi-marko*'s file watcher waits when
+      hot reloading is enabled before it processes the change. This let's
+      editors do their thing before the reload occurs. Default: `2500`
+    * `watchFiles` (array): an array of [glob][glob] patterns to match for the
+      file watcher. Matched templates will be monitored for changes and reloaded
+      accordingingly. This is useful when you use included templates.
+      Normally, only the parent template will be monitored. Default: `[]`
 * `templatesDir` (string) [required]: the location where template files are
 stored. It should be an absolute location to the directory containing the
 template files
@@ -79,6 +84,10 @@ template files
 **Note:** you must supply at least an object with `templatesDir` set.
 
 ## History
+
++ **0.3.0:**
+    + Adjusts `hotReloading` option to an object of other options
+    + Adds support for specifying a list of templates to monitor
 
 + **0.2.0:**
     + Adds hot reloading support for quicker template development
