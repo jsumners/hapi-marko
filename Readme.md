@@ -85,6 +85,10 @@ template files
 
 ## History
 
++ **0.3.0:**
+    + Adjusts `hotReloading` option to an object of other options
+    + Adds support for specifying a list of templates to monitor
+
 + **0.2.0:**
     + Adds hot reloading support for quicker template development
 
