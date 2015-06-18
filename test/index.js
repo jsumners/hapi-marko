@@ -142,7 +142,9 @@ describe('engine', function _engineTests() {
       {
         register: hapiMarko,
         options: {
-          hotReloading: true,
+          hotReloading: {
+            enabled: true
+          },
           templatesDir: tdir
         }
       },
