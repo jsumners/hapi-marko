@@ -42,7 +42,7 @@ server.route({
   method: 'GET',
   path: '/{param}',
   handler: function (req, reply) {
-    return reply('index', {params: req.params});
+    reply.marko('index', {params: req.params});
   }
 });
 
@@ -59,7 +59,7 @@ A boilerplate project is available at
 
 ## Options
 
-The following options can be supplied as an options object to the *hapi-mark*
+The following options can be supplied as an options object to the *hapi-marko*
 initialization function:
 
 * `compileMode` (string): `'sync'` is the only value currently supported and
