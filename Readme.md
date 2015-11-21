@@ -54,6 +54,9 @@ server.inject(
 );
 ```
 
+A boilerplate project is available at
+[https://github.com/AlexanderElias/hapi-marko-boilerplate][boilerplate].
+
 ## Options
 
 The following options can be supplied as an options object to the *hapi-marko*
@@ -110,3 +113,5 @@ template files
 [marko]: https://github.com/raptorjs/marko
 [hapi]: http://hapijs.com/
 [vision]: https://github.com/hapijs/vision
+[boilerplate]: https://github.com/AlexanderElias/hapi-marko-boilerplate
+
