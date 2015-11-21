@@ -85,6 +85,10 @@ template files
 
 ## History
 
++ **0.3.2**
+    + Fix example in readme (d236d91 - AlexanderElias)
+    + Fix Joi import (3583a00 - davidenq)
+
 + **0.3.1:**
     + Fix incorrect definition of hot reloading maps
 
