@@ -161,7 +161,7 @@ describe('engine', function _engineTests() {
 
     const testTmpl = path.join(tdir, 'hr.marko');
     const fs = require('fs');
-    fs.writeFileSync(testTmpl, '$data.foo');
+    fs.writeFileSync(testTmpl, '${data.foo}');
 
     const secondTest = function secondTest() {
       server.inject('/', function(res) {
@@ -176,7 +176,7 @@ describe('engine', function _engineTests() {
       server.inject('/', function(res) {
         expect(res.result).to.equal('bar');
 
-        fs.writeFile(testTmpl, '<p>$data.foo</p>', function() {
+        fs.writeFile(testTmpl, '<p>${data.foo}</p>', function() {
           setTimeout(secondTest, 5000);
         });
       });
@@ -213,7 +213,7 @@ describe('engine', function _engineTests() {
 
     const testTmpl = path.join(tdir, 'glob/glob.marko');
     const fs = require('fs');
-    fs.writeFileSync(testTmpl, '$data.foo');
+    fs.writeFileSync(testTmpl, '${data.foo}');
 
     const secondTest = function secondTest() {
       server.inject('/', function(res) {
@@ -227,7 +227,7 @@ describe('engine', function _engineTests() {
       server.inject('/', function(res) {
         expect(res.result).to.equal('bar');
 
-        fs.writeFile(testTmpl, '<p>$data.foo</p>', function() {
+        fs.writeFile(testTmpl, '<p>${data.foo}</p>', function() {
           setTimeout(secondTest, 5000);
         });
       });

@@ -11,7 +11,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "lab -I __RAPTOR_LOGGING"
+    "test": "lab -I __RAPTOR_LOGGING,__BROWSER_REFRESH_CLIENT"
   },
   "repository": {
     "type": "git",
@@ -24,9 +24,6 @@
     "iojs": ">=1.0",
     "node": ">=0.12.0"
   },
-  "peerDependencies": {
-    "marko": "^2.7.1"
-  },
   "dependencies": {
     "boom": "^2.8.0",
     "glob": "^5.0.10",
@@ -36,6 +33,7 @@
   "devDependencies": {
     "code": "^1.4.1",
     "hapi": "^8.6.1",
-    "lab": "^5.10.0"
+    "lab": "^5.10.0",
+    "marko": "^3.0.0"
   }
 }
