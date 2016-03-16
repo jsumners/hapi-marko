@@ -14,7 +14,7 @@ const expect = Code.expect;
 
 describe('handler()', function testHandler() {
   it('handles routes to views', function _th(done) {
-    const server = new Hapi.Server({minimal: true});
+    const server = new Hapi.Server();
     server.connection();
     server.register(
       {
@@ -46,7 +46,7 @@ describe('handler()', function testHandler() {
   });
 
   it('blows up with invalid template templatesDir', function _boom(done) {
-    const server =  new Hapi.Server({minimal: true});
+    const server =  new Hapi.Server();
     server.connection();
     server.register(
       {
@@ -78,7 +78,7 @@ describe('handler()', function testHandler() {
   });
 
   it('handles custom context', function _cc(done) {
-    const server = new Hapi.Server({minimal: true});
+    const server = new Hapi.Server();
     server.connection();
     server.register(
       {
@@ -105,7 +105,7 @@ describe('handler()', function testHandler() {
   });
 
   it('supports a global context', function _gc(done) {
-    const server = new Hapi.Server({minimal: true});
+    const server = new Hapi.Server();
     server.connection();
     server.register(
       {
@@ -136,7 +136,7 @@ describe('handler()', function testHandler() {
 describe('engine', function _engineTests() {
   lab.test('does hot reloading', {timeout: 5500}, function _hrtest(done) {
     const tdir = path.resolve(__dirname + '/templates');
-    const server = new Hapi.Server({minimal: true});
+    const server = new Hapi.Server();
     server.connection();
     server.register(
       {
@@ -161,7 +161,7 @@ describe('engine', function _engineTests() {
 
     const testTmpl = path.join(tdir, 'hr.marko');
     const fs = require('fs');
-    fs.writeFileSync(testTmpl, '$data.foo');
+    fs.writeFileSync(testTmpl, '${data.foo}');
 
     const secondTest = function secondTest() {
       server.inject('/', function(res) {
@@ -176,7 +176,7 @@ describe('engine', function _engineTests() {
       server.inject('/', function(res) {
         expect(res.result).to.equal('bar');
 
-        fs.writeFile(testTmpl, '<p>$data.foo</p>', function() {
+        fs.writeFile(testTmpl, '<p>${data.foo}</p>', function() {
           setTimeout(secondTest, 5000);
         });
       });
@@ -187,7 +187,7 @@ describe('engine', function _engineTests() {
 
   lab.test('watches specified files', {timeout: 5500}, function _hrtest(done) {
     const tdir = path.resolve(__dirname + '/templates');
-    const server = new Hapi.Server({minimal: true});
+    const server = new Hapi.Server();
     server.connection();
     server.register(
       {
@@ -213,7 +213,7 @@ describe('engine', function _engineTests() {
 
     const testTmpl = path.join(tdir, 'glob/glob.marko');
     const fs = require('fs');
-    fs.writeFileSync(testTmpl, '$data.foo');
+    fs.writeFileSync(testTmpl, '${data.foo}');
 
     const secondTest = function secondTest() {
       server.inject('/', function(res) {
@@ -227,7 +227,7 @@ describe('engine', function _engineTests() {
       server.inject('/', function(res) {
         expect(res.result).to.equal('bar');
 
-        fs.writeFile(testTmpl, '<p>$data.foo</p>', function() {
+        fs.writeFile(testTmpl, '<p>${data.foo}</p>', function() {
           setTimeout(secondTest, 5000);
         });
       });

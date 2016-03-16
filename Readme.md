@@ -54,6 +54,9 @@ server.inject(
 );
 ```
 
+A boilerplate project is available at
+[https://github.com/AlexanderElias/hapi-marko-boilerplate][boilerplate].
+
 ## Options
 
 The following options can be supplied as an options object to the *hapi-marko*
@@ -85,6 +88,10 @@ template files
 
 ## History
 
++ **0.3.2**
+    + Fix example in readme (d236d91 - AlexanderElias)
+    + Fix Joi import (3583a00 - davidenq)
+
 + **0.3.1:**
     + Fix incorrect definition of hot reloading maps
 
@@ -106,3 +113,5 @@ template files
 [marko]: https://github.com/raptorjs/marko
 [hapi]: http://hapijs.com/
 [vision]: https://github.com/hapijs/vision
+[boilerplate]: https://github.com/AlexanderElias/hapi-marko-boilerplate
+
