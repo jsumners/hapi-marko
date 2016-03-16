@@ -1,8 +1,8 @@
 {
   "name": "hapi-marko",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A raptorjs/marko wrapper for Hapi",
-  "homepage": "http://github.com/jsumners/hapi-marko",
+  "homepage": "https://github.com/jsumners/hapi-marko",
   "keywords": [
     "hapi",
     "marko",
@@ -15,15 +15,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/jsumners/hapi-marko.git"
+    "url": "https://github.com/jsumners/hapi-marko.git"
   },
-  "bugs": "http://github.com/jsumners/hapi-marko/issues",
+  "bugs": "https://github.com/jsumners/hapi-marko/issues",
   "author": "James Sumners <james.sumners@gmail.com>",
   "license": "MIT",
-  "engines": {
-    "iojs": ">=1.0",
-    "node": ">=0.12.0"
-  },
   "dependencies": {
     "boom": "^3.1.0",
     "glob": "^7.0.0",
